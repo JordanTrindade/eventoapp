@@ -24,6 +24,11 @@ public class Evento implements Serializable{
 	private String horario;
 
 	
+	
+	public Evento() {
+		super();
+	}
+	
 	public Evento(String nome, String local, String data, String horario) {
 		super();
 		this.nome = nome;
