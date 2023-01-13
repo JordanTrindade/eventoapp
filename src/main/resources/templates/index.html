@@ -2,19 +2,57 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="utf-8">
 <title>Index</title>
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet" href="css/materialize.min.css"
+	media="screen,projection" />
+
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
-	<h1>Lista de Eventos</h1>
-	<h3><a href="/cadastrarEvento">Cadastrar evento</a></h3>
-	<div th:each = "evento : ${eventos}" >
-		<div class="row">
-			<p><span th:text="${evento.nome}"></span></p>
-			<p><span th:text="${evento.local}"></span></p>
-			<p><span th:text="${evento.data}"></span></p>
-			<p><span th:text="${evento.horario}"></span></p>
-		</div>
+
+	<div class="navbar-fixed">
+		<nav>
+			<div class="navbar">
+				<a href="/" class="brand-logo center">Planner</a>
+			</div>
+		</nav>
 	</div>
+
+	<div class="container">
+		<table>
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Local</th>
+					<th>Data</th>
+					<th>Horaio</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="evento : ${eventos}">
+					<td><p th:text="${evento.nome}"></p></td>
+					<td><p th:text="${evento.local}"></p></td>
+					<td><p th:text="${evento.data}"></p></td>
+					<td><p th:text="${evento.horario}"></p></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="col s12 center-align">
+
+			<a href="/cadastrarEvento" class="btn waves-effect waves-light" style="margin:30px"
+				type="submit"> Cadastrar evento <i
+				class="material-icons right">add</i>
+			</a>
+		</div>
+
+	</div>
+	<script type="text/javascript" src="js/materialize.min.js"></script>
 </body>
 </html>
