@@ -1,8 +1,11 @@
 package com.eventoapp.controllers;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,12 +25,22 @@ public class EventoController {
 		ModelAndView mv = new ModelAndView("index");
 		Iterable<Evento> eventos;
 		
-		eventos = eventoService.buscaEventos();
+		eventos = eventoService.buscaListaEventos();
 		mv.addObject("eventos", eventos);
 		
 		return mv;
 	}
 
+	@RequestMapping("/{id}")
+	public ModelAndView eventoDetalhes(@PathVariable long id) {
+		ModelAndView mv = new ModelAndView("evento/eventoDetalhes");
+		Optional<Evento> eventoOp = eventoService.buscaEvento(id);
+		Evento evento = eventoOp.get();
+		mv.addObject("evento", evento);
+		
+		return mv;
+	}
+	
 	@GetMapping(value = "/cadastrarEvento")
 	public String cadastrarEvento() {
 		return "evento/eventoFormulario";

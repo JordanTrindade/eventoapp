@@ -1,5 +1,7 @@
 package com.eventoapp.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +18,16 @@ public class EventoService {
 		eventoRepository.save(evento);
 	}
 	
-	public Iterable<Evento> buscaEventos(){
+	public Optional<Evento> buscaEvento(Long id){
+	
+		Optional<Evento> evento = eventoRepository.findById(id);
+		return evento;
+	}
+	
+	public Iterable<Evento> buscaListaEventos(){
 		Iterable<Evento> evento;
 		evento = eventoRepository.findAll();
 		return evento;
 	}
+	
 }

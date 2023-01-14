@@ -1,11 +1,15 @@
 package com.eventoapp.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Evento implements Serializable{
@@ -23,6 +27,8 @@ public class Evento implements Serializable{
 	private String data;
 	private String horario;
 
+	@OneToMany(mappedBy = "evento", cascade = CascadeType.ALL)
+	private List<Tarefa> tarefas = new ArrayList<>();
 	
 	
 	public Evento() {
@@ -38,6 +44,14 @@ public class Evento implements Serializable{
 	}
 
 	
+	public List<Tarefa> getTarefas() {
+		return tarefas;
+	}
+
+	public void setTarefas(List<Tarefa> tarefas) {
+		this.tarefas = tarefas;
+	}
+
 	public Long getId() {
 		return id;
 	}

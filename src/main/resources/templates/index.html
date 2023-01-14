@@ -36,7 +36,11 @@
 			</thead>
 			<tbody>
 				<tr th:each="evento : ${eventos}">
-					<td><p th:text="${evento.nome}"></p></td>
+					<td>
+						<a th:href="@{/{id}(id=${evento.id})}">
+							<span th:text="${evento.nome}"></span>
+						</a>
+					</td>
 					<td><p th:text="${evento.local}"></p></td>
 					<td><p th:text="${evento.data}"></p></td>
 					<td><p th:text="${evento.horario}"></p></td>
@@ -46,8 +50,8 @@
 
 		<div class="col s12 center-align">
 
-			<a href="/cadastrarEvento" class="btn waves-effect waves-light" style="margin:30px"
-				type="submit"> Cadastrar evento <i
+			<a href="/cadastrarEvento" class="btn waves-effect waves-light"
+				style="margin: 30px" type="submit"> Cadastrar evento <i
 				class="material-icons right">add</i>
 			</a>
 		</div>
