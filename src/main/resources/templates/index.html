@@ -10,7 +10,7 @@
 <!--Import materialize.css-->
 <link type="text/css" rel="stylesheet" href="css/materialize.min.css"
 	media="screen,projection" />
-
+<link rel="icon" href="data:,">
 <!--Let browser know website is optimized for mobile-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
@@ -32,6 +32,7 @@
 					<th>Local</th>
 					<th>Data</th>
 					<th>Horaio</th>
+					<th>Deleta</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -44,6 +45,9 @@
 					<td><p th:text="${evento.local}"></p></td>
 					<td><p th:text="${evento.data}"></p></td>
 					<td><p th:text="${evento.horario}"></p></td>
+					<td>
+						<a th:href="@{/deletaEvento(id = ${evento.id})}"><i class="material-icons">delete</i></a>
+					</td>
 				</tr>
 			</tbody>
 		</table>

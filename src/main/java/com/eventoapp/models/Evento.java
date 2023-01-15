@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Evento implements Serializable{
@@ -22,9 +23,13 @@ public class Evento implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@NotBlank
 	private String nome;
+	@NotBlank
 	private String local;
+	@NotBlank
 	private String data;
+	@NotBlank
 	private String horario;
 
 	@OneToMany(mappedBy = "evento", cascade = CascadeType.ALL)
@@ -35,15 +40,16 @@ public class Evento implements Serializable{
 		super();
 	}
 	
-	public Evento(String nome, String local, String data, String horario) {
+	public Evento(Long id, String nome, String local, String data, String horario, List<Tarefa> tarefas) {
 		super();
+		this.id = id;
 		this.nome = nome;
 		this.local = local;
 		this.data = data;
 		this.horario = horario;
+		this.tarefas = tarefas;
 	}
 
-	
 	public List<Tarefa> getTarefas() {
 		return tarefas;
 	}
@@ -63,24 +69,31 @@ public class Evento implements Serializable{
 	public String getNome() {
 		return nome;
 	}
+	
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
 	public String getLocal() {
 		return local;
 	}
+	
 	public void setLocal(String local) {
 		this.local = local;
 	}
+	
 	public String getData() {
 		return data;
 	}
+	
 	public void setData(String data) {
 		this.data = data;
 	}
+	
 	public String getHorario() {
 		return horario;
 	}
+	
 	public void setHorario(String horario) {
 		this.horario = horario;
 	}

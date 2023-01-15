@@ -30,4 +30,7 @@ public class EventoService {
 		return evento;
 	}
 	
+	public void deletaEvento(Evento evento) {
+		eventoRepository.delete(evento);
+	}
 }

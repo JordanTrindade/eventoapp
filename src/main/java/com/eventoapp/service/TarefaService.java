@@ -1,8 +1,11 @@
 package com.eventoapp.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.eventoapp.models.Evento;
 import com.eventoapp.models.Tarefa;
 import com.eventoapp.repository.TarefaRepository;
 
@@ -16,9 +19,18 @@ public class TarefaService {
 		tarefaRepository.save(tarefa);
 	}
 	
-	public Iterable<Tarefa> buscaListaTarefas(){
+	public Iterable<Tarefa> buscaListaTarefas(Evento evento){
 		Iterable<Tarefa> tarefas;
-		tarefas = tarefaRepository.findAll();
+		tarefas = tarefaRepository.findByEvento(evento);
 		return tarefas;
+	}
+	
+	public Optional<Tarefa> buscaTarefa(Long id){
+		Optional<Tarefa> tarefa = tarefaRepository.findById(id);
+		return tarefa;
+	}
+		
+	public void deletaTarefa(Tarefa tarefa) {
+		tarefaRepository.delete(tarefa);
 	}
 }

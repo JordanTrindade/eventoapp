@@ -14,6 +14,7 @@
 <link type="text/css" rel="stylesheet" href="css/materialize.min.css"
 	media="screen,projection" />
 
+<link rel="icon" href="data:,">
 <!--Let browser know website is optimized for mobile-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -22,18 +23,23 @@
 
 <body>
 	<header>
+		<!-- HEADER INICIO -->
 		<div class="navbar-fixed">
+			<!-- NAVBAR -->
 			<nav>
 				<div class="navbar">
-					<a href="/" class="brand-logo center">Tarefas</a>
+					<a href="/" class="brand-logo center">Planner</a>
 				</div>
 			</nav>
 		</div>
+		<!-- NAVBAR FIM -->
 	</header>
+	<!-- HEADER FIM -->
 	<article>
 		<div class="container">
 			<div class="row">
-				<div><!-- Evento -->
+				<div>
+					<!-- Evento -->
 					<table class="centered">
 						<thead>
 							<tr>
@@ -49,29 +55,46 @@
 								<td th:text="*{Local}"></td>
 								<td th:text="*{Data}"></td>
 								<td th:text="*{Horario}"></td>
+
 							</tr>
 						</tbody>
 					</table>
 				</div>
-				<div style="margin-top: 50px"><!-- Tarefas -->
-					<table class="centered" >
+
+				<div style="margin-top: 50px">
+					<!-- Tarefas -->
+					<table class="centered">
 						<thead>
 							<tr>
 								<th>Nome</th>
 								<th>Inicio</th>
 								<th>Fim</th>
+								<th>Deleta</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each="tarefa : ${tarefas}">
-								<td th:text="${tarefa.nome}"></td>
+								<td><p th:text="${tarefa.nome}">
+									<p></td>
+								<td><p th:text="${tarefa.inicio}">
+									<p></td>
+								<td><p th:text="${tarefa.fim}">
+									<p></td>
+								<td><a th:href="@{/deletaTarefa(id = ${tarefa.id})}"><i
+										class="material-icons">delete</i></a></td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
-				<form method="post" style="margin-top: 100px">
+
+				<div th:if="${mensagem}" class="col s12 center"
+					style="margin-top: 30px">
+					<span th:text="${mensagem}"></span>
+				</div>
+
+				<form method="post" style="margin-top: 30px">
 					<div class="input-field col s6">
-						<input type="text" placeholder="Tarefa" name="tarefa">
+						<input type="text" placeholder="Tarefa" name="nome">
 					</div>
 					<div class="input-field col s3">
 						<input type="text" placeholder="Inicio" name="inicio">
@@ -80,7 +103,9 @@
 						<input type="text" placeholder="Fim" name="fim">
 					</div>
 
-					<button class="btn">Adcionar</button>
+
+					<button type="submit" class="btn">Adcionar</button>
+
 				</form>
 			</div>
 		</div>
